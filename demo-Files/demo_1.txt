@@ -1,0 +1,4 @@
+By default, any Python interpreter installed runs in its own global environment. For example, if you just run python, python3, or py at a new terminal (depending on how you installed Python), you're running in that interpreter's global environment. Any packages that you install or uninstall affect the global environment and all programs that you run within it.
+
+Do note that if you install packages into your global environment, though, in time it will become crowded with potentially unrelated or unexpected packages and make it difficult to properly test an application. You typically want to create an environment for each workspace.
+

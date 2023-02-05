@@ -1,0 +1,1 @@
+There are two types of environments that you can create for your workspace: virtual and conda environments. Both types of environment allow you to install packages without affecting other environments. This lets you isolate what packages you install for your workspace so that they don't interfere with your needs in another workspace.

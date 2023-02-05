@@ -6,7 +6,7 @@ from cryptography.fernet import Fernet
 ###########################################################################
 
 # folder path
-dir_path = 'C:\\Users\\Administrator\\Documents'
+dir_path = '/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files'
 
 files = [] # new list
 
@@ -19,7 +19,7 @@ for file in os.listdir(dir_path):
 # Get the decryption Key from file:
 ###########################################################################
 # opening the key (reading the content from the file)
-with open('filekey.key', 'rb') as filekey:
+with open('/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files/filekey.key', 'rb') as filekey:
     key = filekey.read()
 
 print(key)
@@ -33,7 +33,7 @@ Decryptor = Fernet(key)
 
 # Loop through all files:
 for file in files:
-    cryptedFile = open(f'C:\\Users\\Administrator\\Documents\\{file}', 'rb') # open file for reading
+    cryptedFile = open(f'/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files/{file}', 'rb') # open file for reading
     encryptedText = cryptedFile.read()
     #encryptedText = bytes(encryptedText, 'utf-8')
     print("This is the file content:    ", encryptedText)
@@ -41,7 +41,7 @@ for file in files:
 
     print(decryptedText)
 
-    rescuedFile = open(f'C:\\Users\\Administrator\\Documents\\{file}', 'w') # open file for writing
+    rescuedFile = open(f'/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files/{file}', 'w') # open file for writing
     rescuedFile.write(bytes.decode(decryptedText))
     rescuedFile.close()
 
