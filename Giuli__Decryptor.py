@@ -6,7 +6,7 @@ from cryptography.fernet import Fernet
 ###########################################################################
 
 # folder path
-dir_path = '/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files'
+dir_path = 'demo-Files'
 
 files = [] # new list
 
@@ -19,10 +19,10 @@ for file in os.listdir(dir_path):
 # Get the decryption Key from file:
 ###########################################################################
 # opening the key (reading the content from the file)
-with open('/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files/filekey.key', 'rb') as filekey:
+with open('demo-Files/filekey.key', 'rb') as filekey:
     key = filekey.read()
 
-print(key)
+#print(key)
 
 
 ###########################################################################
@@ -33,18 +33,37 @@ Decryptor = Fernet(key)
 
 # Loop through all files:
 for file in files:
-    cryptedFile = open(f'/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files/{file}', 'rb') # open file for reading
+    cryptedFile = open(f'demo-Files/{file}', 'rb') # open file for reading
     encryptedText = cryptedFile.read()
     #encryptedText = bytes(encryptedText, 'utf-8')
-    print("This is the file content:    ", encryptedText)
+    #print("This is the file content:    ", encryptedText)
     decryptedText = Decryptor.decrypt(encryptedText)
 
-    print(decryptedText)
+    #print(decryptedText)
 
-    rescuedFile = open(f'/home/johannes/Documents/GitHub_Repositories/Demo-Ransomware/demo-Files/{file}', 'w') # open file for writing
+    rescuedFile = open(f'demo-Files/{file}', 'w') # open file for writing
     rescuedFile.write(bytes.decode(decryptedText))
     rescuedFile.close()
 
 
+###########################################################################
+# Delete the Ransom Note & Key File:
+###########################################################################
+try:
+    os.remove("demo-Files/ReadMe.html") # delete Ransom note
+    os.remove("demo-Files/filekey.key") # delete key file
+except:
+    print("Files already removed.")
+
+###########################################################################
+# Change Desktop Wallpaper Back to normal:
+###########################################################################
+path = "default_tmp.png"
+ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
 
 
+###########################################################################
+# Script Closing Statement:
+###########################################################################
+
+print("----------   All files have been decrypted.  ----------")
