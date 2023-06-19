@@ -11,7 +11,7 @@ dir_path = 'demo-Files'
 files = [] # new list
 
 for file in os.listdir(dir_path):
-    if '.txt' in file:
+    if '.txt.meow' in file:
         files.append(file)
 
 
@@ -47,6 +47,15 @@ for file in files:
 
 
 ###########################################################################
+# Remove the custom File Extension:
+###########################################################################
+for file in files:
+    old_file = os.path.join("demo-Files", file)
+    new_file = os.path.join("demo-Files", file.replace('.meow', ''))
+    os.rename(old_file, new_file)
+
+
+###########################################################################
 # Delete the Ransom Note & Key File:
 ###########################################################################
 try:
@@ -58,8 +67,8 @@ except:
 ###########################################################################
 # Change Desktop Wallpaper Back to normal:
 ###########################################################################
-path = "default_tmp.png"
-ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
+#path = "default_tmp.png"
+#ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
 
 
 ###########################################################################

